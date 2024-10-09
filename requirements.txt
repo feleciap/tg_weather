@@ -1,0 +1,3 @@
+SQLAlchemy==<версия>
+psycopg2-binary==<версия>
+
