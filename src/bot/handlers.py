@@ -1,7 +1,13 @@
-from telegram import Update
-from telegram.ext import CommandHandler
+from telegram import Update 
+from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 from bot.weather import get_weather
 from bot.logger import log_request
+
+async def get_weather(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    # Логика получения погоды
+    await update.message.reply_text("Вот ваша погода: ...")
+
+weather_handler = CommandHandler('weather', get_weather)
 
 async def weather(update: Update, context):
     if len(context.args) == 0:
