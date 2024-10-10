@@ -4,8 +4,10 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String, DateTime
 from datetime import datetime
 from src.settings import DATABASE_URL
+import os
 
 # Настройка подключения к базе данных
+DATABASE_URL = os.getenv('DATABASE_URL', 'postgresql://feleciap:123@db_log:5432/warehouse')
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
@@ -19,7 +21,7 @@ class Log(Base):
     user_id = Column(Integer, nullable=False)
     command = Column(String, nullable=False)
     request_time = Column(DateTime, default=datetime.utcnow)
-    response = Column(String, nullable=False)
+    bot_response = Column(String, nullable=False)
 
 # Создание сессии для работы с базой данных
 def get_db_session():
@@ -28,3 +30,6 @@ def get_db_session():
 # Инициализация базы данных
 def init_db():
     Base.metadata.create_all(bind=engine)
+
+if __name__ == "__main__":
+    init_db()
