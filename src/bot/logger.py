@@ -3,21 +3,21 @@ import httpx
 from dotenv import load_dotenv
 import os
 from sqlalchemy.orm import sessionmaker
-from api.database import Log, get_db_session 
+from api.database import Log, get_db_session
 from datetime import datetime
 
-# Загрузка переменных окружения
 load_dotenv()
 
-# Настройка логирования
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S'
+)
 logger = logging.getLogger(__name__)
 
-# Ваши настройки API
 DATABASE_URL = os.getenv('DATABASE_URL')
-WEATHER_API_KEY = os.getenv('c477c9a4e60b398eaa5549590771bcb9')
+WEATHER_API_KEY = os.getenv('WEATHER_API_KEY')
 
-# Создание логов запросов в базу данных
 def log_request(user_id: int, command: str, response: str):
     session = get_db_session()
     log_entry = Log(
@@ -44,9 +44,9 @@ async def get_weather_data(city: str, user_id: int):
             response.raise_for_status()
             data = response.json()
             
-            # Логируем успешный запрос
             log_request(user_id=user_id, command=f"Get weather for {city}", response=str(data))
-            return data  # Возвращаем реальные данные о погоде
+            logger.debug(f"Weather data received: {data}")
+            return data
     except httpx.ConnectTimeout as e:
         logger.error("Connection timeout: %s", e)
         log_request(user_id=user_id, command=f"Get weather for {city}", response="Connection timeout")

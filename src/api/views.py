@@ -1,7 +1,7 @@
 import psycopg2
 
 def get_logs():
-    conn = psycopg2.connect("dbname=warehouse user=postgres password=yourpassword")
+    conn = psycopg2.connect("dbname=warehouse user=feleciap password=123")
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM logs")
     logs = cursor.fetchall()

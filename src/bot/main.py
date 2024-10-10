@@ -4,7 +4,7 @@ from src.settings import DATABASE_URL, WEATHER_API_KEY
 import logging
 import requests
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.DEBUG)
 
 # Функция для обработки команды /start
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
