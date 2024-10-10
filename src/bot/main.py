@@ -1,6 +1,6 @@
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes, MessageHandler, filters
-from src.settings import DATABASE_URL, WEATHER_API_KEY
+from src.settings import WEATHER_API_KEY
 import logging
 import requests
 
