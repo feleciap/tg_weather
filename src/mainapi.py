@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from api.views import get_logs, get_user_logs  # Проверьте правильность импорта
-from bot.logger import get_weather_data  # Проверьте правильность импорта
+from api.views import get_logs, get_user_logs  
+from bot.logger import get_weather_data 
 
 app = FastAPI()
 

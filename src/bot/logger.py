@@ -3,7 +3,7 @@ import httpx
 from dotenv import load_dotenv
 import os
 from sqlalchemy.orm import sessionmaker
-from api.database import Log, get_db_session  # Убедитесь, что у вас есть эта модель
+from api.database import Log, get_db_session 
 from datetime import datetime
 
 # Загрузка переменных окружения
@@ -31,7 +31,7 @@ def log_request(user_id: int, command: str, response: str):
         session.commit()
     except Exception as e:
         logger.error("Database error: %s", e)
-        session.rollback()  # Откат при ошибке
+        session.rollback()  
     finally:
         session.close()
 
