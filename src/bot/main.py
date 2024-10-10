@@ -8,7 +8,7 @@ logging.basicConfig(level=logging.INFO)
 
 # Функция для обработки команды /start
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    await update.message.reply_text('Привет! Я бот для получения погоды. Используйте команду /weather, чтобы узнать погоду.')
+    await update.message.reply_text('Привет! Я бот для получения погоды, создан в качестве теста для компании BobrAi. Используйте команду /weather, чтобы узнать погоду.')
 
 # Функция для получения данных о погоде
 def get_weather(city: str):
